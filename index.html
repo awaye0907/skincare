@@ -66,7 +66,7 @@ function render(){
  document.getElementById("bpm").className=period=="pm"?"on":"";
  var steps,tag,tc,tb,note;
  if(period=="am"){steps=["no5","sun"];tag="每天相同";tc="var(--no)";tb="var(--nob)";note="洗臉後開始，防曬永遠是最後一步。"}
- else{steps=T.s;tag=T.tag;tc=T.c;tb=T.b;note="先卸防曬、洗臉。"+T.n}
+ else{steps=T.s;tag=T.tag;tc=T.c;tb=T.b;note=T.n}
  var done=JSON.parse(store.get(key())||"[]");
  var h='<div class="hh"><h2>'+(period=="am"?"早上流程":"晚上流程")+'</h2><span class="tag" style="background:'+tb+';color:'+tc+'">'+tag+'</span></div><p class="note">'+note+'</p>';
  steps.forEach(function(k,i){var on=done.indexOf(k)>-1;

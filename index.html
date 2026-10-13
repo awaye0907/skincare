@@ -55,7 +55,7 @@ var now=new Date(),today=now.getDay(),selDay=today,period=now.getHours()<15?"am"
 var START=new Date(2026,9,15);
 function dateOf(d){var o=((d+6)%7)-((today+6)%7);var x=new Date(now.getFullYear(),now.getMonth(),now.getDate()+o);return x}
 function neriDays(d){return Math.floor((dateOf(d)-START)/86400000)}
-function ptype(d){if(d==0)return"rest";if(d==1||d==3||d==5)return"ep";var n=neriDays(d);if(n<0)return"pd";var on=n<14?d==4:(n<28?(d==4||d==6):true);return on?"ne":"pd"}
+function ptype(d){if(d==0)return"rest";if(d==1||d==3||d==5)return"ep";return"ne"}
 var TYPES={ep:{tag:"維A夜",c:"var(--ep)",b:"var(--epb)",s:["ep2","pd3"],n:"今晚是 EP2 夜，不要疊 Néri。"},ne:{tag:"亮白夜",c:"var(--no)",b:"var(--nob)",s:["ne","pd3"],n:"今晚用 Néri，不疊 EP2。"},pd:{tag:"修護夜",c:"var(--pd)",b:"var(--pdb)",s:["pd3"],n:"Néri 導入中，今晚只擦 PD3。"},rest:{tag:"休息夜",c:"var(--pd)",b:"var(--pdb)",s:["mask","pd3"],n:"今晚敷保濕面膜，再擦 PD3 鎖水。"}};
 function key(){var d=new Date();return"done-"+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+"-"+period+"-"+selDay}
 function render(){
@@ -82,4 +82,4 @@ document.getElementById("week").onclick=function(e){var b=e.target.closest("butt
 document.getElementById("bam").onclick=function(){period="am";render()};
 document.getElementById("bpm").onclick=function(){period="pm";render()};
 render();
-</script><script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(function(){})}</script></body></html>
+</script><script>if("serviceWorker" in navigator){navigator.serviceWorker.addEventListener("message",function(e){if(e.data==="updated")location.reload()});navigator.serviceWorker.register("sw.js").catch(function(){})}</script></body></html>
